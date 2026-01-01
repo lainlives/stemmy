@@ -8,6 +8,7 @@ import gradio as gr
 from audio_separator.separator import Separator
 
 from assets.model_tools import download_file, download_files_from_txt
+import tempfile
 
 now_dir = os.getcwd()
 sys.path.append
@@ -34,6 +35,7 @@ confirm_file = os.path.join(asset_dir, "files_downloaded")
 default_settings_file = os.path.join(asset_dir, "default_settings.json")
 custom_settings_file = os.path.join(asset_dir, "custom_settings.json")
 components = {"Roformer": {}, "MDX23C": {}, "MDX-NET": {}, "VR Arch": {}, "Demucs": {}}
+tmp_dir = tempfile.gettempdir()
 
 
 #  Dynamically import theme .py
@@ -223,8 +225,9 @@ def get_all_models():
         return
     else:
         print(f"Downloading models from {models_file}")
-        download_file(models_file, "/tmp")
-        download_files_from_txt("/tmp/models.txt", models_dir)
+        download_file(models_file, tmp_dir)
+        modelstxt = os.path.join(tmp_dir, "models.txt")
+        download_files_from_txt(modelstxt, models_dir)
         with open(confirm_file, "a"):
             pass
 
