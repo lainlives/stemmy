@@ -1,3 +1,4 @@
 setup.cfg
 *pycache*
 assets/models
+assets/files_downloaded
