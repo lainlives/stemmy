@@ -19,8 +19,9 @@ from PyQt6.QtWidgets import (
 )
 
 from assets.stemmy import roformer_models, roformer_separator
-
-AUDIO_PATH = "sample.mp3"
+from scipy.io import wavfile
+import librosa
+import numpy as np
 
 formats = ["FLAC", "MP3", "WAV"]
 roformer_compute = "cpu"
@@ -149,7 +150,7 @@ class AudioSeparatorApp(QMainWindow):
         # Second row: Overlap and Batch Size
         row2 = QHBoxLayout()
         row2.addWidget(QLabel("Overlap:"))
-        self.roformer_overlap, o_layout = create_labeled_slider(2, 10, 8)
+        self.roformer_overlap, o_layout = create_labeled_slider(2, 99, 1)
         row2.addLayout(o_layout)
 
         row2.addWidget(QLabel("Batch size:"))
@@ -188,7 +189,7 @@ class AudioSeparatorApp(QMainWindow):
         # Note: Updated lambda to grab current values at the moment of clicking
         self.roformer_button.clicked.connect(
             lambda: roformer_separator(
-                AUDIO_PATH,
+                self.audio_path,
                 self.roformer_model.currentText(),
                 self.roformer_output_format.currentText(),
                 self.roformer_segment_size.value(),
@@ -216,7 +217,7 @@ class AudioSeparatorApp(QMainWindow):
 
     def select_audio_file(self):
         # Define supported audio file filters
-        file_filter = "Audio Files (*.wav *.mp3 *.flac *.m4a *.ogg);;All Files (*)"
+        file_filter = "Audio Files (*.wav *.mp3 *.flac *.ogg);;All Files (*)"
 
         # Use static method to get file path
         # Returns tuple: (file_path, selected_filter)
@@ -239,6 +240,17 @@ class AudioSeparatorApp(QMainWindow):
             print("File selection cancelled")
 
         return self.audio_path
+        # Load as float (default)
+
+    def wav2tuple(self, audio_path):
+        y, sr = librosa.load(self.audio_path, sr=None)
+
+        # Scale and convert to 16-bit integers
+        y_int = (y * 32767).astype(np.int16)
+
+        # Convert to tuple
+        audio_as_tuple = tuple(y_int.tolist())
+        return self.conv_tuple
 
 
 if __name__ == "__main__":

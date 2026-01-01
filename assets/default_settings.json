@@ -3,9 +3,9 @@
         "model": null,
         "output_format": null,
         "segment_size": 2048,
-        "override_segment_size": false,
+        "override_segment_size": true,
         "overlap": 10,
-        "batch_size": 128,
+        "batch_size": 8,
         "normalization_threshold": 0.9,
         "amplification_threshold": 0.7,
         "single_stem": ""
@@ -17,7 +17,7 @@
         "segment_size": 256,
         "denoise": false,
         "overlap": 0.25,
-        "batch_size": 128,
+        "batch_size": 8,
         "normalization_threshold": 0.9,
         "amplification_threshold": 0.7,
         "single_stem": ""
@@ -31,7 +31,7 @@
         "post_process": false,
         "post_process_threshold": 0.2,
         "high_end_process": false,
-        "batch_size": 128,
+        "batch_size": 8,
         "normalization_threshold": 0.9,
         "amplification_threshold": 0.7,
         "single_stem": ""
@@ -43,7 +43,7 @@
         "segment_size": 40,
         "segments_enabled": true,
         "overlap": 0.25,
-        "batch_size": 128,
+        "batch_size": 8,
         "normalization_threshold": 0.9,
         "amplification_threshold": 0.7
     }

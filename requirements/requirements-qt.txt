@@ -1,3 +1,4 @@
 Requests
 PyQt6
 PyQt6_sip
+librosa
