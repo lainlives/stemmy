@@ -1,3 +1,2 @@
-audio-separator[gpu]==0.40.0
-pypresence
-gradio==6.2.0
+-r requirements/requirements-core.txt
+-r requirements/requirements-qt.txt
