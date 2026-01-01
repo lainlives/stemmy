@@ -17,7 +17,7 @@ zgpuduration = 30  # Zerogpu allocation time.
 model_repo = "audio-separator-models"
 repo_owner = "lainlives"
 theme_name = "blurple"
-models_dir = os.path.join("tmp", "models")
+models_dir = "/tmp/models"
 asset_dir = os.path.join(now_dir, "assets")
 out_dir = os.path.join(now_dir, "outputs")
 
@@ -653,6 +653,7 @@ def mdx23c_batch(
 
         progress(1.0, desc="Processing complete")
         return "\n".join(logs)
+
 
 def mdxnet_batch(
     path_input,
