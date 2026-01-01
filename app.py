@@ -23,13 +23,7 @@ out_dir = os.path.join(now_dir, "outputs")
 
 os.makedirs(models_dir, exist_ok=True)
 
-if os.environ.get("SPACES_ZERO_GPU") is not None:
-    import spaces
-
-    gpuconcurrency = None
-    device = "cuda"
-    use_autocast = device == "cuda"
-if torch.cuda.is_available() and os.environ.get("SPACES_ZERO_GPU") is None:
+if torch.cuda.is_available()
     gpuconcurrency = torch.cuda.device_count()
     device = "cuda"
     use_autocast = device == "cuda"
