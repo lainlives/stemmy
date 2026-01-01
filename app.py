@@ -23,7 +23,7 @@ out_dir = os.path.join(now_dir, "outputs")
 
 os.makedirs(models_dir, exist_ok=True)
 
-if torch.cuda.is_available()
+if torch.cuda.is_available():
     gpuconcurrency = torch.cuda.device_count()
     device = "cuda"
     use_autocast = device == "cuda"
@@ -296,8 +296,6 @@ def get_initial_settings():
 initial_settings = get_initial_settings()
 
 
-# if os.environ.get("SPACES_ZERO_GPU") is not None:
-@spaces.GPU(duration=zgpuduration)
 def roformer_separator(
     audio,
     model_key,
@@ -338,8 +336,6 @@ def roformer_separator(
     return stems[0], stems[1]
 
 
-# if os.environ.get("SPACES_ZERO_GPU") is not None:
-@spaces.GPU(duration=zgpuduration * 1.25)
 def mdxc_separator(
     audio,
     model,
@@ -379,8 +375,6 @@ def mdxc_separator(
     return stems[0], stems[1]
 
 
-# if os.environ.get("SPACES_ZERO_GPU") is not None:
-@spaces.GPU(duration=zgpuduration)
 def mdxnet_separator(
     audio,
     model,
@@ -423,8 +417,6 @@ def mdxnet_separator(
     return stems[0], stems[1]
 
 
-# if os.environ.get("SPACES_ZERO_GPU") is not None:
-@spaces.GPU(duration=zgpuduration)
 def vrarch_separator(
     audio,
     model,
@@ -470,8 +462,6 @@ def vrarch_separator(
     return stems[0], stems[1]
 
 
-# if os.environ.get("SPACES_ZERO_GPU") is not None:
-@spaces.GPU(duration=zgpuduration * 2)
 def demucs_separator(
     audio,
     model,
@@ -523,8 +513,6 @@ def update_stems(model):
         return gr.update(visible=False)
 
 
-# if os.environ.get("SPACES_ZERO_GPU") is not None:
-@spaces.GPU(duration=zgpuduration)
 def roformer_batch(
     path_input,
     path_output,
@@ -598,7 +586,6 @@ def roformer_batch(
 
 
 # if os.environ.get("SPACES_ZERO_GPU") is not None:
-@spaces.GPU(duration=zgpuduration)
 def mdx23c_batch(
     path_input,
     path_output,
@@ -667,9 +654,6 @@ def mdx23c_batch(
         progress(1.0, desc="Processing complete")
         return "\n".join(logs)
 
-
-# if os.environ.get("SPACES_ZERO_GPU") is not None:
-@spaces.GPU(duration=zgpuduration)
 def mdxnet_batch(
     path_input,
     path_output,
@@ -741,8 +725,6 @@ def mdxnet_batch(
         return "\n".join(logs)
 
 
-# if os.environ.get("SPACES_ZERO_GPU") is not None:
-@spaces.GPU(duration=zgpuduration)
 def vrarch_batch(
     path_input,
     path_output,
@@ -818,8 +800,6 @@ def vrarch_batch(
         return "\n".join(logs)
 
 
-# if os.environ.get("SPACES_ZERO_GPU") is not None:
-@spaces.GPU(duration=zgpuduration)
 def demucs_batch(
     path_input,
     path_output,
