@@ -159,7 +159,11 @@ def download_files_from_txt(filename, local_dir, max_workers):
         urls = [line.strip() for line in f if line.strip()]
 
     # Use ThreadPoolExecutor to handle 20 downloads at a time
+<<<<<<< HEAD
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
+=======
+    with ThreadPoolExecutor(max_workers=5) as executor:
+>>>>>>> 10bf2414c0c2b13f9b90593a274c8d054211060a
         # Submit all download tasks to the pool
         results = [executor.submit(download_file, url, local_dir) for url in urls]
 
