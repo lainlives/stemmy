@@ -140,14 +140,15 @@ def download_file(url, local_dir):
         response.raise_for_status()
 
         with open(save_path, "wb") as f:
-            for chunk in response.iter_content(chunk_size=8192):
+            for chunk in response.iter_content(chunk_size=31457280):
+                f"Initiating download: {filename}"
                 f.write(chunk)
         return f"Successfully downloaded: {filename}"
     except Exception as e:
         return f"Failed to download {url}: {e}"
 
 
-def download_files_from_txt(filename, local_dir):
+def download_files_from_txt(filename, local_dir, max_workers):
     """Main function to read URLs and download them using 20 threads."""
     # Ensure local directory exists
     if not os.path.exists(local_dir):
@@ -158,7 +159,7 @@ def download_files_from_txt(filename, local_dir):
         urls = [line.strip() for line in f if line.strip()]
 
     # Use ThreadPoolExecutor to handle 20 downloads at a time
-    with ThreadPoolExecutor(max_workers=20) as executor:
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
         # Submit all download tasks to the pool
         results = [executor.submit(download_file, url, local_dir) for url in urls]
 
@@ -360,7 +361,7 @@ def iterate_and_hash(
         (file, os.path.join(root, file))
         for root, _, files in os.walk(directory)
         for file in files
-        if file.endswith((".pth", ".onnx"))
+        if file.endswith((".pth", ".onnx", ".pt", ".ckpt"))
     ]
 
     download_file_if_missing(vr_model_data_url, vr_model_data_local_path)

@@ -1,11 +1,21 @@
 import gradio as gr
 import torch
 
-from assets.stemmy import (components, demucs_models, demucs_separator,
-                           initial_settings, mdxnet_models, mdxnet_separator,
-                           output_format, roformer_models, roformer_separator,
-                           theme, update_stems, vrarch_models,
-                           vrarch_separator)
+from assets.stemmy import (
+    components,
+    demucs_models,
+    demucs_separator,
+    initial_settings,
+    mdxnet_models,
+    mdxnet_separator,
+    output_format,
+    roformer_models,
+    roformer_separator,
+    theme,
+    update_stems,
+    vrarch_models,
+    vrarch_separator,
+)
 
 if torch.cuda.is_available():
     gpuconcurrency = torch.cuda.device_count()

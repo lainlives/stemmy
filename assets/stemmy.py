@@ -3,12 +3,12 @@ import json
 import logging
 import os
 import sys
+import tempfile
 
 import gradio as gr
 from audio_separator.separator import Separator
 
 from assets.model_tools import download_file, download_files_from_txt
-import tempfile
 
 now_dir = os.getcwd()
 sys.path.append

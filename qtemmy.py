@@ -1,5 +1,7 @@
 import sys
 
+import librosa
+import numpy as np
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QApplication,
@@ -17,11 +19,9 @@ from PyQt6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
+from scipy.io import wavfile
 
 from assets.stemmy import roformer_models, roformer_separator
-from scipy.io import wavfile
-import librosa
-import numpy as np
 
 formats = ["FLAC", "MP3", "WAV"]
 roformer_compute = "cpu"

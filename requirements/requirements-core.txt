@@ -3,3 +3,4 @@ torch>=2.5.0
 onnx>=1.20.0
 protobuf>=6.33.2
 numpy
+gradio==6.2.0
