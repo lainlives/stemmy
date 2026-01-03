@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.1.1-runtime-rockylinux8
+FROM nvidia/cuda:12.8.1-runtime-rockylinux9
 # 2. Set environment variables to prevent interactive prompts and set the HF port
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
