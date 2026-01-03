@@ -227,7 +227,7 @@ def get_all_models():
         print(f"Downloading models from {models_file}")
         download_file(models_file, tmp_dir)
         modelstxt = os.path.join(tmp_dir, "models.txt")
-        download_files_from_txt(modelstxt, models_dir)
+        download_files_from_txt(modelstxt, models_dir, 5)
         with open(confirm_file, "a"):
             pass
 
